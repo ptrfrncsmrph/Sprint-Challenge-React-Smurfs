@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
+import { Route } from "react-router-dom"
 
 import "./App.scss"
 import SmurfForm from "./components/SmurfForm"
@@ -20,8 +21,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <SmurfForm addSmurf={addSmurf} />
-      <Smurfs smurfs={smurfs} />
+      <Route
+        exact
+        path="/"
+        render={props => <Smurfs smurfs={smurfs} {...props} />}
+      />
+      <Route
+        path="/smurf-form"
+        render={props => <SmurfForm addSmurf={addSmurf} {...props} />}
+      />
     </div>
   )
 }
