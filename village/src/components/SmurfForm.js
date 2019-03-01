@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 
-const SmurfForm = () => {
+const SmurfForm = ({ addSmurf }) => {
   const [{ name, age, height }, setSmurf] = useState({
     name: "",
     age: "",
     height: ""
   })
-  const handleSubmit = () => {}
+  const handleSubmit = e => {
+    e.preventDefault()
+    addSmurf({ name, age: parseInt(age), height })
+  }
   const handleChange = ({ target: { name, value } }) => {
     setSmurf(smurf => ({ ...smurf, [name]: value }))
   }
@@ -25,6 +28,7 @@ const SmurfForm = () => {
         value={height}
         name="height"
       />
+      <button>Submit</button>
     </form>
   )
 }
