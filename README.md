@@ -29,8 +29,24 @@ In this challenge, you will create a Single Page Application complete with Clien
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain the differences between `client-side routing` and `server-side routing`.
+
+Historically, routing always happened on the server side. 
+When the client changes the URL that sends a request to the server for a new page, and when the response is received the browser will refresh.
+With client-side routing, JavaScript will prevent that default behavior, intercepting the request and interpreting it usually by changing the view (which is already loaded in the client side app). 
+This makes for less-janky view changes, but at the cost of heavier upfront initial page load.
+
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+**Create** corresponds to a HTTP "POST" request.
+**Read** corresponds to a HTTP "GET" request.
+**Update** corresponds to a HTTP "PUT" request.
+**Delete** corresponds to a HTTP "UPDATE" request.
+
 - [ ] Mention three tools we can use to make AJAX requests.
+
+- Axios is a library that can be used for AJAX with JavaScript
+- The Fetch API will add an easy, native API for AJAX requests in the browser
+- XMLHttpRequest is the existing browser-based API for AJAX requests, but it is a bit cumbersome to use, so Axios is usually preferred
 
 
 ## Project Set Up
