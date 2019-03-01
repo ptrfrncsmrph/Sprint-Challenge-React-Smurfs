@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const emptySmurf = {
   name: "",
@@ -6,11 +6,23 @@ const emptySmurf = {
   height: ""
 }
 
-const SmurfForm = ({ addSmurf, history }) => {
+const SmurfForm = ({ smurfs = [], updateSmurf, addSmurf, history, match }) => {
+  const { id } = match.params
   const [{ name, age, height }, setSmurf] = useState(emptySmurf)
+
+  useEffect(
+    () => {
+      const smurf = id ? smurfs.find(s => s.id === id) : emptySmurf
+      smurf && setSmurf(smurf)
+    },
+    [smurfs]
+  )
+
   const handleSubmit = e => {
     e.preventDefault()
-    addSmurf({ name, age: parseInt(age), height })
+    id !== undefined
+      ? updateSmurf(id, { name, age: parseInt(age), height })
+      : addSmurf({ name, age: parseInt(age), height })
     setSmurf(emptySmurf)
     history.push("/")
   }

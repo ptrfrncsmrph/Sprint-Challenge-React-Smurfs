@@ -3,14 +3,14 @@ import React from "react"
 import Smurf from "./Smurf"
 import "./Smurfs.scss"
 
-const Smurfs = ({ updateSmurf, deleteSmurf, smurfs = [] }) => (
+const Smurfs = ({ deleteSmurf, smurfs = [], history }) => (
   <>
     <h1>Smurf Village</h1>
     {smurfs.length ? (
       <ul>
         {smurfs.map(smurf => (
           <Smurf
-            updateSmurf={updateSmurf}
+            history={history}
             deleteSmurf={deleteSmurf}
             {...smurf}
             key={smurf.id}

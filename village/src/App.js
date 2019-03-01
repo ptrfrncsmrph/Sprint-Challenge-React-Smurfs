@@ -25,6 +25,10 @@ const App = () => {
     axios.delete(API_ENDPOINT + String(id)).then(update)
   }
 
+  const updateSmurf = (id, smurf) => {
+    axios.put(API_ENDPOINT + String(id), smurf).then(update)
+  }
+
   return (
     <>
       <nav>
@@ -39,8 +43,15 @@ const App = () => {
         )}
       />
       <Route
+        exact
         path="/smurf-form"
         render={props => <SmurfForm addSmurf={addSmurf} {...props} />}
+      />
+      <Route
+        path="/smurf-form/:id"
+        render={props => (
+          <SmurfForm smurfs={smurfs} updateSmurf={updateSmurf} {...props} />
+        )}
       />
     </>
   )
