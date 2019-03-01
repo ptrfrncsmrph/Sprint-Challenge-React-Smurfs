@@ -4,6 +4,7 @@ const noOp = _ => console.error("Forgot to implement")
 
 const Smurf = ({
   deleteSmurf = noOp,
+  updateSmurf = noOp,
   id = undefined,
   name = "",
   height = "",
@@ -16,6 +17,7 @@ const Smurf = ({
     <button onClick={deleteSmurf(id)} className="danger">
       Delete
     </button>
+    <button onClick={updateSmurf(id)}>Edit</button>
   </li>
 )
 

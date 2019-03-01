@@ -3,14 +3,23 @@ import React from "react"
 import Smurf from "./Smurf"
 import "./Smurfs.scss"
 
-const Smurfs = ({ deleteSmurf, smurfs = [] }) => (
+const Smurfs = ({ updateSmurf, deleteSmurf, smurfs = [] }) => (
   <>
     <h1>Smurf Village</h1>
-    <ul>
-      {smurfs.map(smurf => (
-        <Smurf deleteSmurf={deleteSmurf} {...smurf} key={smurf.id} />
-      ))}
-    </ul>
+    {smurfs.length ? (
+      <ul>
+        {smurfs.map(smurf => (
+          <Smurf
+            updateSmurf={updateSmurf}
+            deleteSmurf={deleteSmurf}
+            {...smurf}
+            key={smurf.id}
+          />
+        ))}
+      </ul>
+    ) : (
+      <p>Nothing to show</p>
+    )}
   </>
 )
 
