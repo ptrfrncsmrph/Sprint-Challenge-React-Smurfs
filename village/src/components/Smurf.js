@@ -1,19 +1,11 @@
 import React from "react"
 
-const Smurf = props => {
-  return (
-    <div className="Smurf">
-      <h3>{props.name}</h3>
-      <strong>{props.height} tall</strong>
-      <p>{props.age} smurf years old</p>
-    </div>
-  )
-}
-
-Smurf.defaultProps = {
-  name: "",
-  height: "",
-  age: ""
-}
+const Smurf = ({ name = "", height = "", age = "" }) => (
+  <div className="Smurf">
+    <h3>{name}</h3>
+    <strong>{height} tall</strong>
+    <p>{age} smurf years old</p>
+  </div>
+)
 
 export default Smurf
