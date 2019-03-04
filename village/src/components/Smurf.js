@@ -1,20 +1,22 @@
-import React from 'react';
+import React from "react"
 
-const Smurf = props => {
-  return (
-    <div className="Smurf">
-      <h3>{props.name}</h3>
-      <strong>{props.height} tall</strong>
-      <p>{props.age} smurf years old</p>
-    </div>
-  );
-};
+const noOp = _ => console.error("Forgot to implement")
 
-Smurf.defaultProps = {
-  name: '',
-  height: '',
-  age: ''
-};
+const Smurf = ({
+  deleteSmurf = noOp,
+  id = undefined,
+  name = "",
+  height = "",
+  age = ""
+}) => (
+  <li className="Smurf">
+    <h3>{name}</h3>
+    <strong>{height} tall</strong>
+    <p>{age} smurf years old</p>
+    <button onClick={deleteSmurf(id)} className="danger">
+      Delete
+    </button>
+  </li>
+)
 
-export default Smurf;
-
+export default Smurf

@@ -1,27 +1,49 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from "react"
+import axios from "axios"
+import { NavLink, Route } from "react-router-dom"
 
-import './App.css';
-import SmurfForm from './components/SmurfForm';
-import Smurfs from './components/Smurfs';
+import "./App.scss"
+import SmurfForm from "./components/SmurfForm"
+import Smurfs from "./components/Smurfs"
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      smurfs: [],
-    };
+const API_ENDPOINT = "http://10.0.0.53:3333/smurfs/"
+
+const App = () => {
+  const [smurfs, setSmurfs] = useState([])
+
+  const update = ({ data }) => setSmurfs(data)
+
+  useEffect(() => {
+    axios.get(API_ENDPOINT).then(update)
+  }, [])
+
+  const addSmurf = smurf => {
+    axios.post(API_ENDPOINT, smurf).then(update)
   }
-  // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
-  // Notice what your map function is looping over and returning inside of Smurfs.
-  // You'll need to make sure you have the right properties on state and pass them down to props.
-  render() {
-    return (
-      <div className="App">
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
-      </div>
-    );
+
+  const deleteSmurf = id => _e => {
+    axios.delete(API_ENDPOINT + String(id)).then(update)
   }
+
+  return (
+    <>
+      <nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/smurf-form">Add a smurf</NavLink>
+      </nav>
+      <Route
+        exact
+        path="/"
+        render={props => (
+          <Smurfs deleteSmurf={deleteSmurf} smurfs={smurfs} {...props} />
+        )}
+      />
+      <Route
+        path="/smurf-form"
+        render={props => <SmurfForm addSmurf={addSmurf} {...props} />}
+      />
+    </>
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "Sleepy",
+      "age": 323,
+      "height": "5cm"
+    },
+    {
+      "name": "Greedy",
+      "age": 150,
+      "height": "4.8cm"
+    },
+    {
+      "name": "Clumsy",
+      "age": 129,
+      "height": "4.1cm"
+    },
+    {
+      "name": "Smurfette",
+      "age": 141,
+      "height": "4.9cm"
+    }
+  ]
+}
